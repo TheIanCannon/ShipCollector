@@ -10,9 +10,9 @@ class Ship:  # Note that parens are optional if not inheriting from another clas
     self.description = description
 
 ships = [
-  Ship('Rocinante', 'Corvette-class light frigate', 'Tycho (Independent)', 'A Legitimate Salvage'),
-  Ship('Tynan', 'Cutter-class gunship', 'Medina Station (OPAN)', 'Captain: by Klaes Ashford'),
-  Ship('Kittur Chennama', 'Morrigan-class patrol destroyer', 'Mars (MCRN)', 'Destroyed in engagement with UN Navy')
+  Ship('Rocinante', 'Corvette-class light frigate', 'Tycho (Independent)', '"A Legitimate Salvage..."'),
+  Ship('Tynan', 'Cutter-class gunship/torpedo boat', 'Medina Station (OPAS)', 'Captained by Camina Drummer'),
+  Ship('Kittur Chennama', 'Morrigan-class patrol destroyer', 'Mars (MCRN)', 'Destroyed UN Navy engagement')
 ]
 
 # Create your views here

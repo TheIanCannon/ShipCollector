@@ -1,4 +1,5 @@
 body {
+    font-family: 'Orbitron', sans-serif;
     background-color: black;
 }
 
@@ -12,8 +13,22 @@ body {
     color: silver;
 }
 
+.card {
+    width: 50%;
+    border: silver 1vh;
+    border-radius: 5px;
+}
+
 .card-content {
-    display: grid;
     background-color: grey;
     color: white;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+#about-header,
+#about-text {
+    color: silver;
 }
