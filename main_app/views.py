@@ -12,8 +12,8 @@ class Ship:  # Note that parens are optional if not inheriting from another clas
 ships = [
   Ship('Rocinante', 'Corvette-class light frigate', 'Tycho (Independent)', '"A Legitimate Salvage..."'),
   Ship('Tynan', 'Cutter-class gunship/torpedo boat', 'Medina Station (OPAS)', 'Captained by Camina Drummer'),
-  Ship('Kittur Chennama', 'Morrigan-class patrol destroyer', 'Mars (MCRN)', 'Destroyed UN Navy engagement')
-		Ship('Screaming Firehawk', 'Racing pinnace', 'Luna (Lowell Base)', 'Formerly the "Razorback" piloted by Julie Mao')
+  Ship('Kittur Chennama', 'Morrigan-class patrol destroyer', 'Mars (MCRN)', 'Destroyed UN Navy engagement'),
+		Ship('Screaming Firehawk', 'Racing pinnace', 'Luna (Lowell Base)', 'Formerly the "Razorback" piloted by Julie Mao'),
 ]
 
 # Create your views here
