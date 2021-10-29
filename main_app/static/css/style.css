@@ -1,0 +1,19 @@
+body {
+    background-color: black;
+}
+
+.nav-wrapper {
+    background-color: rgb(30, 30, 30);
+    color: silver;
+}
+
+.page-footer {
+    background-color: rgb(30, 30, 30);
+    color: silver;
+}
+
+.card-content {
+    display: grid;
+    background-color: grey;
+    color: white;
+}
