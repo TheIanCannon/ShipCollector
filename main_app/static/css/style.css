@@ -15,13 +15,14 @@ body {
 
 .card {
     width: 50%;
-    border: silver 1vh;
-    border-radius: 5px;
+    border: 5px solid silver !important;
+    border-radius: 25px;
 }
 
 .card-content {
     background-color: grey;
     color: white;
+    border-radius: 20px !important;
 }
 
 .card-title {
