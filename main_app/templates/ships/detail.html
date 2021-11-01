@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Ship Details</h1>
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ ship.name }}</span>
+        <p>Type: {{ ship.ship_type }}</p>
+        <p>Registry: {{ ship.registry }}</p>
+        <p>Length (m): {{ ship.length }}</p>
+        <p>Description: {{ ship.description }}</p>
+    </div>
+</div>
+
+{% endblock %}
