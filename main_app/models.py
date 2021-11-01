@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Ship(models.Model):  # Note that parens are optional if not inheriting from another class
@@ -10,3 +11,6 @@ class Ship(models.Model):  # Note that parens are optional if not inheriting fro
 					
 	def __str__(self):
 		return f'({self.id}) - {self.name}'
+
+def get_absolute_url(self):
+		return reverse('detail', kwargs={'ship_id': self.id})

@@ -33,3 +33,10 @@ body {
 #about-text {
     color: silver;
 }
+
+#id_name,
+#id_ship_type,
+#id_length,
+#id_description {
+    color: silver;
+}

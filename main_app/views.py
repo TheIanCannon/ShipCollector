@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Ship
 
 # Create your models and instances here
@@ -17,3 +18,7 @@ def ships_index(request):
 def ships_detail(request, ship_id):
 				ship = Ship.objects.get(id=ship_id)
 				return render(request, 'ships/detail.html', {'ship': ship})	
+
+class ShipCreate(CreateView):
+				model=Ship			
+				fields='__all__'
