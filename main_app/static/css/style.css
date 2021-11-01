@@ -1,42 +1,50 @@
-body {
-    font-family: 'Orbitron', sans-serif;
-    background-color: black;
-}
-
-.nav-wrapper {
-    background-color: rgb(30, 30, 30);
-    color: silver;
-}
-
-.page-footer {
-    background-color: rgb(30, 30, 30);
-    color: silver;
-}
-
-.card {
-    width: 50%;
-    border: 5px solid silver !important;
-    border-radius: 25px;
-}
-
-.card-content {
-    background-color: grey;
-    color: white;
-    border-radius: 20px !important;
-}
-
-.card-title {
-    font-weight: bold;
-}
-
-#about-header,
-#about-text {
-    color: silver;
-}
-
-#id_name,
-#id_ship_type,
-#id_length,
-#id_description {
-    color: silver;
-}
+    body {
+        font-family: 'Orbitron', sans-serif;
+        background-color: black;
+    }
+    
+    .nav-wrapper {
+        background-color: rgb(30, 30, 30);
+        color: silver;
+    }
+    
+    .page-footer {
+        background-color: rgb(30, 30, 30);
+        color: silver;
+    }
+    
+    .card {
+        width: 50%;
+        border: 3px solid silver !important;
+        border-radius: 25px;
+    }
+    
+    .card-content {
+        background-color: grey;
+        color: white;
+        border-radius: 22px !important;
+    }
+    
+    .card-action {
+        background-color: white;
+        font-weight: bold;
+        border-bottom-left-radius: 22px !important;
+        border-bottom-right-radius: 22px !important;
+    }
+    
+    .card-title {
+        font-weight: bold;
+    }
+    
+    #about-header,
+    #about-text {
+        color: silver;
+    }
+    
+    #id_name,
+    #id_ship_type,
+    #id_registry,
+    #id_length,
+    #id_description {
+        color: silver;
+    }

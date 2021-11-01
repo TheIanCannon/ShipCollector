@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Ship
 
 # Create your models and instances here
@@ -22,3 +22,11 @@ def ships_detail(request, ship_id):
 class ShipCreate(CreateView):
 				model=Ship			
 				fields='__all__'
+
+class ShipUpdate(UpdateView):
+				model=Ship			
+				fields='__all__'
+
+class ShipDelete(DeleteView):
+				model=Ship			
+				success_url='/ships/'

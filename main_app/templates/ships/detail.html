@@ -10,6 +10,10 @@
         <p>Length (m): {{ ship.length }}</p>
         <p>Description: {{ ship.description }}</p>
     </div>
+    <div class="card-action">
+        <a href="{% url 'ships_update' ship.id %}">Edit</a>
+        <a href="{% url 'ships_delete' ship.id %}">Delete</a>
+    </div>
 </div>
 
 {% endblock %}
