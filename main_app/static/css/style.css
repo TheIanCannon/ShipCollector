@@ -3,6 +3,11 @@
         background-color: black;
     }
     
+    .container,
+    .select-dropdown.dropdown-trigger {
+        color: silver;
+    }
+    
     .nav-wrapper {
         background-color: rgb(30, 30, 30);
         color: silver;
@@ -14,7 +19,6 @@
     }
     
     .card {
-        width: 50%;
         border: 3px solid silver !important;
         border-radius: 25px;
     }
@@ -37,14 +41,12 @@
     }
     
     #about-header,
-    #about-text {
-        color: silver;
-    }
-    
+    #about-text,
     #id_name,
     #id_ship_type,
     #id_registry,
     #id_length,
-    #id_description {
+    #id_description,
+    #id_date {
         color: silver;
     }

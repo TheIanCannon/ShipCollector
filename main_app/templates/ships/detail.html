@@ -2,18 +2,97 @@
 
 <h1>Ship Details</h1>
 
-<div class="card">
-    <div class="card-content">
-        <span class="card-title">{{ ship.name }}</span>
-        <p>Type: {{ ship.ship_type }}</p>
-        <p>Registry: {{ ship.registry }}</p>
-        <p>Length (m): {{ ship.length }}</p>
-        <p>Description: {{ ship.description }}</p>
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ ship.name }}</span>
+                <p>Type: {{ ship.ship_type }}</p>
+                <p>Registry: {{ ship.registry }}</p>
+                <p>Length (m): {{ ship.length }}</p>
+                <p>Description: {{ ship.description }}</p>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'ships_update' ship.id %}">Edit</a>
+                <a href="{% url 'ships_delete' ship.id %}">Delete</a>
+            </div>
+        </div>
     </div>
-    <div class="card-action">
-        <a href="{% url 'ships_update' ship.id %}">Edit</a>
-        <a href="{% url 'ships_delete' ship.id %}">Delete</a>
+    <div class="col s6">
+        <form action="{% url 'add_resupply' ship.id %}" method="post">
+            {% csrf_token %} {{ resupply_form.as_p }}
+            <input type="submit" class="btn" value="Add Resupply">
+        </form>
+        <br> {% if ship.resupplied_for_today %}
+        <div class="card-panel teal-text center-align">{{ship.name}} has been fully resupplied</div>
+        {% else %}
+        <div class="card-panel red-text center-align">{{ship.name}} may need more supplies</div>
+        {% endif %}
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Resupply</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resupply in ship.resupply_set.all %}
+                <tr>
+                    <td>{{resupply.date}}</td>
+                    <td>{{resupply.get_supply_display}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
+<hr>
+<div class="row">
+    <div class="col s6">
+        <h3>{{ ship.name }}'s Equipment</h3>
+        {% if ship.equipment.count %} {% for equipment in ship.equipment.all %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">
+              {{ equipment.name }}
+                </span>
+            </div>
+        </div>
+        {% endfor %} {% else %}
+        <h5>No Equipment</h5>
+        {% endif %}
+    </div>
+    <!-- Available Equipment will come after this line -->
+    <div class="col s6">
+        <h3>Available Equipment</h3>
+        {% if equipment.count %} {% for equipment in equipment.all %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">
+              {{ equipment.name }}
+                </span>
+            </div>
+            <div class="card-action">
+                <form action="{%url 'assoc_equipment' ship.id equipment.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">Add</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %} {% else %}
+        <h5>{{ship.name}} Already Has All equipment Available</h5>
+        {% endif %}
+    </div>
+    <script>
+        const dateEl = document.getElementById('id_date');
+        M.Datepicker.init(dateEl, {
+            format: 'yyyy-mm-dd',
+            defaultDate: new Date(),
+            setDefaultDate: true,
+            autoClose: true,
+        })
 
-{% endblock %}
+        const selectEl = document.getElementById('id_supply');
+        M.FormSelect.init(selectEl);
+    </script>
+    {% endblock %}
