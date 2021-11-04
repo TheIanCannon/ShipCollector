@@ -18,4 +18,5 @@ urlpatterns =[
 				path('equipment/create/', views.EquipmentCreate.as_view(), name='equipment_create'),
 				path('equipment/<int:pk>/update/', views.EquipmentUpdate.as_view(), name='equipment_update'),
 				path('equipment/<int:pk>/delete/', views.EquipmentDelete.as_view(), name='equipment_delete'),
+				path('accounts/signup', views.signup, name='signup'),
 ]

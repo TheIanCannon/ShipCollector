@@ -65,7 +65,7 @@
             <div class="card-content">
                 <span class="card-title">
               {{ equipment.name }}
-                </span>
+                </span> {{equipment.description}}
             </div>
             <div class="card-action">
                 <form action="{%url 'unassoc_equipment' ship.id equipment.id %}" method="post">
@@ -86,7 +86,7 @@
             <div class="card-content">
                 <span class="card-title">
               {{ equipment.name }}
-                </span>
+                </span> {{equipment.description}}
             </div>
             <div class="card-action">
                 <form action="{%url 'assoc_equipment' ship.id equipment.id %}" method="post">

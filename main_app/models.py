@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.db import models
 from datetime import date
+from django.contrib.auth.models import User
 
 SUPPLIES=(('F', 'Fuel Pellets'),
 ('W', 'Water'),
@@ -25,6 +26,7 @@ class Ship(models.Model):  # Note that parens are optional if not inheriting fro
 		length = models.IntegerField()				
 		description = models.TextField(max_length=250)
 		equipment = models.ManyToManyField(Equipment)
+		user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 		def __str__(self):
 			return f'({self.id}) - {self.name}'
@@ -34,7 +36,6 @@ class Ship(models.Model):  # Note that parens are optional if not inheriting fro
 
 		def resupplied_for_today(self):
 			 return self.resupply_set.filter(date=date.today()).count() >= len(SUPPLIES)  
-
 
 class Resupply(models.Model):
 		date=models.DateField('Resupply Date')

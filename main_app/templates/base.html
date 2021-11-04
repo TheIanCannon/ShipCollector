@@ -21,14 +21,20 @@
         <nav>
             <div class="nav-wrapper">
                 <ul>
-                    <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Ship Collector</a></li>
+                    <li><a href="/" class="left brand-logo">&nbsp;Ship Collector</a></li>
                 </ul>
                 <ul class="right">
                     <li><a href="{% url 'about' %}">About</a></li>
+                    {% if user.is_authenticated %}
                     <li><a href="{% url 'ships_create' %}">Add a Ship</a></li>
-                    <li><a href="{% url 'index' %}">View All My Ships</a></li>
+                    <li><a href="{% url 'index' %}">View All Ships</a></li>
                     <li><a href="{% url 'equipment_create' %}">Add Equipment</a></li>
                     <li><a href="{% url 'equipment_index' %}">View All Equipment</a></li>
+                    <li><a href="{% url 'logout'%}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'signup'%}">Sign Up</a></li>
+                    <li><a href="{% url 'login'%}">Log In</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </nav>

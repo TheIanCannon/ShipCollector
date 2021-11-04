@@ -1,7 +1,10 @@
-from django.forms.models import fields_for_model
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import os
 import boto3
@@ -17,37 +20,46 @@ def home(request):
 def about(request):
 				return render(request, 'about.html')
 
+@login_required
 def ships_index(request):
 				ships = Ship.objects.all()
 				return render(request, 'ships/index.html', {'ships': ships})
 
+@login_required
 def ships_detail(request, ship_id):
 				ship = Ship.objects.get(id=ship_id)
 				equipment_ship_doesnt_have=Equipment.objects.exclude(id__in=ship.equipment.all().values_list('id'))
 				resupply_form=ResupplyForm()
 				return render(request, 'ships/detail.html', {'ship': ship, 'resupply_form': resupply_form, 'equipment': equipment_ship_doesnt_have})	
 
+@login_required
 def assoc_equipment(request, ship_id, equipment_id):
 				Ship.objects.get(id=ship_id).equipment.add(equipment_id)
 				return redirect('detail', ship_id=ship_id)
 
+@login_required
 def unassoc_equipment(request, ship_id, equipment_id):
 				Ship.objects.get(id=ship_id).equipment.remove(equipment_id)
 				return redirect('detail', ship_id=ship_id)
 
 
-class ShipCreate(CreateView):
+class ShipCreate(LoginRequiredMixin, CreateView):
 				model=Ship			
 				fields='__all__'
 
-class ShipUpdate(UpdateView):
+				def form_valid(self, form):
+						form.instance.user=self.request.user
+						return super().form_valid(form)
+
+class ShipUpdate(LoginRequiredMixin, UpdateView):
 				model=Ship			
 				fields='__all__'
 
-class ShipDelete(DeleteView):
+class ShipDelete(LoginRequiredMixin, DeleteView):
 				model=Ship			
 				success_url='/ships/'
 
+@login_required
 def add_resupply(request, ship_id):
 				form=ResupplyForm(request.POST)
 				if form.is_valid():
@@ -56,6 +68,7 @@ def add_resupply(request, ship_id):
 								new_resupply.save()
 				return redirect('detail', ship_id=ship_id)
 
+@login_required
 def add_photo(request, ship_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
@@ -70,20 +83,34 @@ def add_photo(request, ship_id):
       print('An error occured uploading file to S3', e)
   return redirect('detail', ship_id=ship_id)
 
-class EquipmentList(ListView):
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
+class EquipmentList(LoginRequiredMixin, ListView):
   model = Equipment
 
-class EquipmentDetail(DetailView):
+class EquipmentDetail(LoginRequiredMixin, DetailView):
   model = Equipment
 
-class EquipmentCreate(CreateView):
+class EquipmentCreate(LoginRequiredMixin, CreateView):
   model = Equipment
   fields = '__all__'
 
-class EquipmentUpdate(UpdateView):
+class EquipmentUpdate(LoginRequiredMixin, UpdateView):
   model = Equipment
   fields = ['name', 'description']
 
-class EquipmentDelete(DeleteView):
+class EquipmentDelete(LoginRequiredMixin, DeleteView):
   model = Equipment
   success_url = '/equipment/'
