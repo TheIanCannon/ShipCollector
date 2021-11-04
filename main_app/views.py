@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 import uuid
 import os
-import boto3
+import boto3 
 from .models import Ship, Equipment, Photo
 from .forms import ResupplyForm
 
@@ -45,7 +45,7 @@ def unassoc_equipment(request, ship_id, equipment_id):
 
 class ShipCreate(LoginRequiredMixin, CreateView):
 				model=Ship			
-				fields='__all__'
+				fields=['name', 'ship_type', 'registry', 'length', 'description']
 
 				def form_valid(self, form):
 						form.instance.user=self.request.user
