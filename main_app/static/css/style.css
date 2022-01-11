@@ -3,6 +3,10 @@
         background-color: black;
     }
     
+    .btn {
+      background-color: rgb(35, 80, 220);
+    }
+
     .container,
     .select-dropdown.dropdown-trigger {
         color: silver;
@@ -32,6 +36,7 @@
     .card-action {
         background-color: white;
         font-weight: bold;
+        border-top: none;
         border-bottom-left-radius: 22px !important;
         border-bottom-right-radius: 22px !important;
     }
